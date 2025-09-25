@@ -25,7 +25,7 @@ export function Banner({title, subtitle, bgImage, image}: Props) {
                                className="text-white hover:bg-green-300 bg-green-200 rounded-[30px] px-[18px] py-2 sm:px-[37px] sm:py-[15px] cursor-pointer text-heading6"/>
                     </form>
                 </div>
-                <ImageView src={image} alt={"banner"} className="m-w-[50%]" width={717} height={538}/>
+                <ImageView src={image} alt={"banner"} className="m-w-[50%] h-auto" width={717} height={538}/>
             </div>
             <form name="subscription" method="post" action="#"
                   className="flex lg:hidden gap-2.5 items-center justify-between rounded-[30px] mx-auto max-w-[550px] bg-[#F5F5F5] pl-4 sm:pl-5 md:pl-6 mt-4 sm:mt-5 md:mt-6">

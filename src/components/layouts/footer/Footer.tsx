@@ -17,7 +17,7 @@ export function Footer() {
                         </div>
                     </div>
 
-                    <ImageView src="/assets/images/Screenshot (76).png" className="absolute bottom-0 right-0 sm:h-full" alt={"banner"} width={587} height={331}/>
+                    <ImageView src="/assets/images/Screenshot (76).png" className="absolute bottom-0 right-0 sm:h-full w-auto" alt={"banner"} width={587} height={331}/>
 
                 </div>
             </div>
