@@ -12,6 +12,7 @@
     "next": "15.1.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "swiper": "^12.0.2",
     "tailwind-merge": "^2.2.0-dev.f015c8110f6e743e6da0c1a878aff3a24a4eae1c"
   },
   "devDependencies": {
