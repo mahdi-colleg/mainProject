@@ -19,7 +19,7 @@ export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false
         span.push(<span className={`path${i}`}></span>)
     }
 
-
+    if (link){
     return (
         <Link className={`flex items-center cursor-pointer ${linkClassName}`} href={link ?? "#"}>
             {badge ?
@@ -42,6 +42,31 @@ export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false
                 </div>
             }
         </Link>
-    );
+    );}
+    else {
+        return (
+            <>
+                {badge ?
+                    <div className="relative">
+                    <span
+                        className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
+                        <i className={`${icon} text-[${size}px]`}>{span}</i>
+                    </div> :
+                    <i className={`${icon} text-[${size}px]`}>{span}</i>
+                }
+
+                {
+                    title &&
+                    <div
+                        className={`${
+                            hideTitleOnMobile ? "hidden xl:inline-block" : "inline-block"
+                        } ${titleClassName} ml-2`}
+                    >
+                        {title}
+                    </div>
+                }
+            </>
+        );
+    }
 }
 

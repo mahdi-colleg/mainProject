@@ -1,6 +1,6 @@
 import React from 'react';
 import {Section} from "@/components/layouts/section";
-import {Banner, FeaturedCategories} from "@/components";
+import {Banner, FeaturedCategories, MiniProductSlider} from "@/components";
 
 export default function Home() {
   return (
@@ -17,6 +17,9 @@ export default function Home() {
                   <h2 className="text-heading3 text-blue-300">Featured Categories</h2>
               </div>
               <FeaturedCategories/>
+          </Section>
+          <Section>
+              <MiniProductSlider/>
           </Section>
       </>
   );
