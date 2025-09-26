@@ -40,11 +40,9 @@ export function SimpleProductSlider({sliderData, nextEl, prevEl}: Props) {
             {
                 sliderData.map((slideData, index) => {
                     return (
-                        <>
-                            <SwiperSlide key={index}>
-                                <SimpleProductCard data={slideData}/>
-                            </SwiperSlide>
-                        </>
+                        <SwiperSlide key={index}>
+                            <SimpleProductCard data={slideData}/>
+                        </SwiperSlide>
                     )
                 })
             }

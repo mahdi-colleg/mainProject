@@ -21,7 +21,7 @@ export function Menu() {
                         {
                             browsCategoryMock.map((item, index) => {
                                     return (
-                                        <IconBox link={item.link} icon={item.icon} size={30} title={item.title} titleClassName={"text-heading-sm text-blue-300"} path={item.iconPath} linkClassName={"gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300"}/>
+                                        <IconBox key={index} link={item.link} icon={item.icon} size={30} title={item.title} titleClassName={"text-heading-sm text-blue-300"} path={item.iconPath} linkClassName={"gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300"}/>
                                     )
                                 }
                             )
