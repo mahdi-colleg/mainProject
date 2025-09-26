@@ -20,7 +20,7 @@ export const popularFruits = [
         unit: "gram",
         price: 3000,
         sale_price: 200,
-        label: "Hot",
+        label: "sale",
     },
     {
         title: "Foster Farms Takeout Crispy Classic Buffalo Wings",
@@ -31,7 +31,6 @@ export const popularFruits = [
         unit: "gram",
         price: 3000,
         sale_price: 200,
-        label: "Hot",
     },
     {
         title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
@@ -53,7 +52,7 @@ export const popularFruits = [
         unit: "gram",
         price: 3000,
         sale_price: 200,
-        label: "Hot",
+        label: "sale",
     },
     {
         title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
@@ -63,7 +62,5 @@ export const popularFruits = [
         weight: 500,
         unit: "gram",
         price: 3000,
-        sale_price: 200,
-        label: "Hot",
     },
 ]

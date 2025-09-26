@@ -6,9 +6,8 @@ export const popularProducts = [
         rate: 4.0,
         weight: 500,
         unit: "gram",
-        price: 3000,
-        sale_price: 200,
-        label: "Hot",
+        price: 2400,
+        sale_price: 2000,
     },
     {
         title: "All Natural Italian-Style Chicken Meatballs",
@@ -17,9 +16,8 @@ export const popularProducts = [
         rate: 4.0,
         weight: 500,
         unit: "gram",
-        price: 3000,
+        price: 300,
         sale_price: 200,
-        label: "Hot",
     },
     {
         title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
