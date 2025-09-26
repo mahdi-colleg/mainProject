@@ -100,4 +100,4 @@ export function SimpleProductCard({data}: Props) {
             }
         </div>
     );
-};
+}

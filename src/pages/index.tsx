@@ -2,7 +2,7 @@ import React from 'react';
 import {Section} from "@/components/layouts/section";
 import {
     Banner,
-    BestSellersSlider,
+    BestSellersSlider, DealsOfTheDaySlider,
     FeaturedCategories,
     IconBox,
     MiniProductSlider,
@@ -12,6 +12,7 @@ import {popularProducts} from "@/mock/PopularProducts";
 import {popularFruits} from "@/mock/PopularFruits";
 import Link from "next/link";
 import {BestSellers} from "@/mock/BestSellers";
+import {dealsOfTheDay} from "@/mock/DealsOfTheDay";
 
 
 export default function Home() {
@@ -72,6 +73,16 @@ export default function Home() {
               </div>
               <BestSellersSlider sliderData={BestSellers}/>
           </Section>
+          <Section>
+              <div className="flex justify-between items-center mb-[50px]">
+                  <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals
+                      Of The Days</h2>
+                  <Link className="flex items-center" href="#">All Deals
+                    <IconBox icon={"icon-angle-small-right"} size={24}/>
+                  </Link>
+              </div>
+              <DealsOfTheDaySlider sliderData={dealsOfTheDay}/>
+          </Section>
       </>
-);
+  );
 }

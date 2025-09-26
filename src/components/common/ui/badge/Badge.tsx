@@ -15,4 +15,4 @@ export function Badge({badge = '', price, sale_price}: Props) {
             }
         </div>
     );
-};
+}
