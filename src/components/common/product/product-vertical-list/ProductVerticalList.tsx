@@ -1,4 +1,4 @@
-import {ImageView, MiniProductCard} from "@/components";
+import {MiniProductCard} from "@/components";
 
 interface Props {
     title: string
@@ -18,4 +18,4 @@ export function ProductVerticalList({title, data}: Props) {
             </div>
         </>
     );
-};
+}

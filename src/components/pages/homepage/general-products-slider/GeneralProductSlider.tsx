@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import {ProductVerticalList, SimpleProductCard} from "@/components";
+import {ProductVerticalList} from "@/components";
 import {topSelling} from "@/mock/TopSelling";
 import {topRated} from "@/mock/TopRated";
 import {recentlyAdded} from "@/mock/RecentlyAdded";

@@ -37,4 +37,4 @@ export function MiniProductCard({data}: Props) {
             </div>
         </>
     );
-};
+}

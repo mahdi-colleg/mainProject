@@ -29,7 +29,7 @@ export default function Home() {
               <div className="hidden sm:flex mb-[50px]">
                   <h2 className="text-heading3 text-blue-300">Featured Categories</h2>
               </div>
-              <div className={"flex"}>
+              <div className={"flex flex-wrap xl:flex-nowrap justify-center"}>
                 <FeaturedCategories/>
               </div>
           </Section>
@@ -62,7 +62,7 @@ export default function Home() {
                   <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best
                       Sellers</h2>
               </div>
-              <div className={"grid grid-cols-4 gap-4"}>
+              <div className={"inline-grid grid-cols-4 gap-4"}>
                   <div className="flex gap-[24px]">
                       <div
                           className="bg-[url('/assets/images/bg-leaf.png')] bg-no-repeat bg-bottom bg-[#3BB77E] rounded-[10px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] p-12 pt-[38px] self-stretch flex-col justify-between max-w-[370px] hidden xl:flex">
@@ -74,7 +74,7 @@ export default function Home() {
                           </Link>
                       </div>
                   </div>
-                  <div className={"col-span-3"}><BestSellersSlider sliderData={BestSellers}/></div>
+                  <div className={"col-span-4 xl:col-span-3"}><BestSellersSlider sliderData={BestSellers}/></div>
               </div>
           </Section>
           <Section>
