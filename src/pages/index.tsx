@@ -3,7 +3,7 @@ import {Section} from "@/components/layouts/section";
 import {
     Banner,
     BestSellersSlider, DealsOfTheDaySlider,
-    FeaturedCategories,
+    FeaturedCategories, GeneralProductSlider,
     IconBox,
     MiniProductSlider,
     SimpleProductSlider
@@ -86,6 +86,9 @@ export default function Home() {
                   </Link>
               </div>
               <DealsOfTheDaySlider sliderData={dealsOfTheDay}/>
+          </Section>
+          <Section>
+              <GeneralProductSlider/>
           </Section>
       </>
   );
