@@ -2,8 +2,14 @@ import Link from "next/link";
 import {IconBox} from "@/components";
 import {browsCategoryMock} from "@/mock/browsCategory";
 import {menuMock} from "@/mock/menu";
+import {useQuery} from "@tanstack/react-query";
+import {getMenu} from "@/api/Menu";
 
 export function Menu() {
+
+    const {data: menuData} = useQuery({queryKey: ["getMenu"], queryFn: () => getMenu()})
+    console.log("menu data", menuData);
+
     // TODO load menu data from api
     return (
         <>
