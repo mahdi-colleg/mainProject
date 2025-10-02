@@ -1,9 +1,6 @@
 import Link from "next/link";
 import {IconBox} from "@/components";
-import {browsCategoryMock} from "@/mock/browsCategory";
-import {ApiResponseType, EntityType, MenuItemType, MenuType, PopulateType} from "@/types";
-import {useQuery} from "@tanstack/react-query";
-import {getMenu} from "@/api/Menu";
+import {EntityType, MenuItemType} from "@/types";
 import {useMenu} from "@/hooks/useMenu";
 import React, {useEffect, useState} from "react";
 
