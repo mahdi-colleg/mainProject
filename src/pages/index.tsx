@@ -29,9 +29,7 @@ export default function Home() {
               <div className="hidden sm:flex mb-[50px]">
                   <h2 className="text-heading3 text-blue-300">Featured Categories</h2>
               </div>
-              <div className={"flex flex-wrap xl:flex-nowrap justify-center"}>
-                <FeaturedCategories/>
-              </div>
+              <FeaturedCategories/>
           </Section>
           <Section>
               <MiniProductSlider/>

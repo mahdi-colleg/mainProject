@@ -2,7 +2,7 @@ import Link from "next/link";
 import {IconBox} from "@/components";
 import {EntityType, MenuItemType} from "@/types";
 import {useMenu} from "@/hooks/useMenu";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useOverlay} from "@/hooks/useOverlay";
 
 export function Menu() {
