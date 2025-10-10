@@ -1,4 +1,3 @@
-import {FeaturedCategoriesMock} from "@/mock/featuredCategories";
 import Link from "next/link";
 import {ImageView} from "@/components";
 import {useQuery} from "@tanstack/react-query";

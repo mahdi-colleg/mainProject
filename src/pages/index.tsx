@@ -13,9 +13,22 @@ import {popularFruits} from "@/mock/PopularFruits";
 import Link from "next/link";
 import {BestSellers} from "@/mock/BestSellers";
 import {dealsOfTheDay} from "@/mock/DealsOfTheDay";
+import {getAllProducts} from "@/api/Product";
+import {useQuery} from "@tanstack/react-query";
+import {ApiResponseType} from "@/types";
+import {ProductType} from "@/types/api/Product";
 
 
 export default function Home() {
+
+    const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
+        queryKey:[getAllProducts.name],
+        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:true}})
+    })
+
+
+
+
   return (
       <>
           <Section>
@@ -43,48 +56,48 @@ export default function Home() {
 
                   </div>
               </div>
-              <SimpleProductSlider sliderData={popularProducts} nextEl={".swiper-nav-right"} prevEl={".swiper-nav-left"} />
+              {popularProductsData && <SimpleProductSlider sliderData={popularProductsData.data} nextEl={".swiper-nav-right"} prevEl={".swiper-nav-left"} />}
           </Section>
-          <Section>
-              <div className="flex justify-between mb-[50px]">
-                  <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>
-                  <div className="flex items-center gap-3">
-                      <IconBox icon={"swiper-nav-left2 icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>
-                      <IconBox icon={"swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>
-                  </div>
-              </div>
-              <SimpleProductSlider sliderData={popularFruits} nextEl={".swiper-nav-right2"} prevEl={".swiper-nav-left2"} />
-          </Section>
-          <Section>
-              <div className="flex justify-between mb-[50px]">
-                  <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best
-                      Sellers</h2>
-              </div>
-              <div className={"inline-grid grid-cols-4 gap-4"}>
-                  <div className="flex gap-[24px]">
-                      <div
-                          className="bg-[url('/assets/images/bg-leaf.png')] bg-no-repeat bg-bottom bg-[#3BB77E] rounded-[10px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] p-12 pt-[38px] self-stretch flex-col justify-between max-w-[370px] hidden xl:flex">
-                          <h3 className="text-heading2 text-blue-300">Bring nature into your home</h3>
-                          <Link href="#"
-                                className="mt-6 pl-[15px] pr-2.5 py-2 bg-yellow-100 hover:bg-green-200 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
-                              <div className="text-xsmall text-white">Shop now</div>
-                              <IconBox icon={"icon-arrow-small-right"} size={24}/>
-                          </Link>
-                      </div>
-                  </div>
-                  <div className={"col-span-4 xl:col-span-3"}><BestSellersSlider sliderData={BestSellers}/></div>
-              </div>
-          </Section>
-          <Section>
-              <div className="flex justify-between items-center mb-[50px]">
-                  <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals
-                      Of The Days</h2>
-                  <Link className="flex items-center" href="#">All Deals
-                    <IconBox icon={"icon-angle-small-right"} size={24}/>
-                  </Link>
-              </div>
-              <DealsOfTheDaySlider sliderData={dealsOfTheDay}/>
-          </Section>
+          {/*<Section>*/}
+          {/*    <div className="flex justify-between mb-[50px]">*/}
+          {/*        <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>*/}
+          {/*        <div className="flex items-center gap-3">*/}
+          {/*            <IconBox icon={"swiper-nav-left2 icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>*/}
+          {/*            <IconBox icon={"swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>*/}
+          {/*        </div>*/}
+          {/*    </div>*/}
+          {/*    <SimpleProductSlider sliderData={popularFruits} nextEl={".swiper-nav-right2"} prevEl={".swiper-nav-left2"} />*/}
+          {/*</Section>*/}
+          {/*<Section>*/}
+          {/*    <div className="flex justify-between mb-[50px]">*/}
+          {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best*/}
+          {/*            Sellers</h2>*/}
+          {/*    </div>*/}
+          {/*    <div className={"inline-grid grid-cols-4 gap-4"}>*/}
+          {/*        <div className="flex gap-[24px]">*/}
+          {/*            <div*/}
+          {/*                className="bg-[url('/assets/images/bg-leaf.png')] bg-no-repeat bg-bottom bg-[#3BB77E] rounded-[10px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] p-12 pt-[38px] self-stretch flex-col justify-between max-w-[370px] hidden xl:flex">*/}
+          {/*                <h3 className="text-heading2 text-blue-300">Bring nature into your home</h3>*/}
+          {/*                <Link href="#"*/}
+          {/*                      className="mt-6 pl-[15px] pr-2.5 py-2 bg-yellow-100 hover:bg-green-200 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">*/}
+          {/*                    <div className="text-xsmall text-white">Shop now</div>*/}
+          {/*                    <IconBox icon={"icon-arrow-small-right"} size={24}/>*/}
+          {/*                </Link>*/}
+          {/*            </div>*/}
+          {/*        </div>*/}
+          {/*        <div className={"col-span-4 xl:col-span-3"}><BestSellersSlider sliderData={BestSellers}/></div>*/}
+          {/*    </div>*/}
+          {/*</Section>*/}
+          {/*<Section>*/}
+          {/*    <div className="flex justify-between items-center mb-[50px]">*/}
+          {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals*/}
+          {/*            Of The Days</h2>*/}
+          {/*        <Link className="flex items-center" href="#">All Deals*/}
+          {/*          <IconBox icon={"icon-angle-small-right"} size={24}/>*/}
+          {/*        </Link>*/}
+          {/*    </div>*/}
+          {/*    <DealsOfTheDaySlider sliderData={dealsOfTheDay}/>*/}
+          {/*</Section>*/}
           <Section>
               <GeneralProductSlider/>
           </Section>
