@@ -2,17 +2,11 @@ import React from 'react';
 import {Section} from "@/components/layouts/section";
 import {
     Banner,
-    BestSellersSlider, DealsOfTheDaySlider,
     FeaturedCategories, GeneralProductSlider,
     IconBox,
     MiniProductSlider,
     SimpleProductSlider
 } from "@/components";
-import {popularProducts} from "@/mock/PopularProducts";
-import {popularFruits} from "@/mock/PopularFruits";
-import Link from "next/link";
-import {BestSellers} from "@/mock/BestSellers";
-import {dealsOfTheDay} from "@/mock/DealsOfTheDay";
 import {getAllProducts} from "@/api/Product";
 import {useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
@@ -22,8 +16,13 @@ import {ProductType} from "@/types/api/Product";
 export default function Home() {
 
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
-        queryKey:[getAllProducts.name],
+        queryKey:[getAllProducts.name, "popular-product"],
         queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:true}})
+    })
+
+    const {data: popularFruitProductsData} = useQuery<ApiResponseType<ProductType>>({
+        queryKey:[getAllProducts.name, "popular-fruit"],
+        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular_fruit:true}})
     })
 
 
@@ -53,21 +52,20 @@ export default function Home() {
                   <div className="flex items-center gap-3">
                       <IconBox icon={"swiper-nav-left icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>
                       <IconBox icon={"swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>
-
                   </div>
               </div>
               {popularProductsData && <SimpleProductSlider sliderData={popularProductsData.data} nextEl={".swiper-nav-right"} prevEl={".swiper-nav-left"} />}
           </Section>
-          {/*<Section>*/}
-          {/*    <div className="flex justify-between mb-[50px]">*/}
-          {/*        <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>*/}
-          {/*        <div className="flex items-center gap-3">*/}
-          {/*            <IconBox icon={"swiper-nav-left2 icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>*/}
-          {/*            <IconBox icon={"swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>*/}
-          {/*        </div>*/}
-          {/*    </div>*/}
-          {/*    <SimpleProductSlider sliderData={popularFruits} nextEl={".swiper-nav-right2"} prevEl={".swiper-nav-left2"} />*/}
-          {/*</Section>*/}
+          <Section>
+              <div className="flex justify-between mb-[50px]">
+                  <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>
+                  <div className="flex items-center gap-3">
+                      <IconBox icon={"swiper-nav-left2 icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>
+                      <IconBox icon={"swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"} size={24}/>
+                  </div>
+              </div>
+              {popularFruitProductsData && <SimpleProductSlider sliderData={popularFruitProductsData.data} nextEl={".swiper-nav-right2"} prevEl={".swiper-nav-left2"} />}
+          </Section>
           {/*<Section>*/}
           {/*    <div className="flex justify-between mb-[50px]">*/}
           {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best*/}

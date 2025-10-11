@@ -26,7 +26,7 @@ interface Props {
 export function SimpleProductCard({data}: Props) {
     return (
         <div
-            className="group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
+            className="group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] min-h-[410px]">
             {data.attributes.label && <Badge badge={data.attributes.label} price={data.attributes.price} sale_price={data.attributes.sell_price} />}
             <div
                 className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
@@ -42,7 +42,7 @@ export function SimpleProductCard({data}: Props) {
             </div>
             <ImageView src={data.attributes.thumbnail?.data?.attributes.url} alt={"popular"} width={210} height={168} className={"m-auto w-full aspect-[3/2] mb-[28px]"}/>
             <div className="flex flex-col gap-2">
-                {data.attributes.categories?.data[0] && <div className="text-gray-500 text-xsmall">{data.attributes.categories?.data[0].attributes.title}</div>}
+                {data.attributes.categories?.data[0] ? <div className="text-gray-500 text-xsmall">{data.attributes.categories?.data[0].attributes.title}</div> : <div className=" text-gray-500 text-xsmall">none</div>}
                 <Link href={"#"}><h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden">{data.attributes.title}</h3></Link>
                 <div className="flex gap-4">
                     <Rating rate={data.attributes.rate}/>
