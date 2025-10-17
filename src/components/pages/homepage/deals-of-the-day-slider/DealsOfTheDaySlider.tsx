@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import {ProductDealsCard, SimpleProductCard} from "@/components";
+import {ProductDealsCard} from "@/components";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 

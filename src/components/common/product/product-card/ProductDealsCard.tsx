@@ -101,4 +101,4 @@ export function ProductDealsCard({data}: Props) {
             </div>
         </div>
     );
-};
+}
