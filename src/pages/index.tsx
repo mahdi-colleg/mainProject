@@ -1,7 +1,7 @@
 import React from 'react';
 import {Section} from "@/components/layouts/section";
 import {
-    Banner, BestSellersSlider,
+    Banner, BestSellersSlider, DealsOfTheDaySlider,
     FeaturedCategories, GeneralProductSlider,
     IconBox,
     MiniProductSlider,
@@ -18,17 +18,27 @@ export default function Home() {
 
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProducts.name, "popular-product"],
-        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:true}})
+        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:{$eq: true}}})
     })
 
     const {data: popularFruitProductsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProducts.name, "popular-fruit"],
-        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular_fruit:true}})
+        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular_fruit:{$eq: true}}})
     })
 
     const {data: bestSellerProductsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProducts.name, "best-seller"],
-        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_best_seller:true}})
+        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_best_seller:{$eq: true}}})
+    })
+
+    const {data: dealsOfDayData} = useQuery<ApiResponseType<ProductType>>({
+        queryKey:[getAllProducts.name, "deals-of-day"],
+        queryFn: ()=>getAllProducts({
+            populate:["categories", "thumbnail"], 
+            filters:{
+                discount_expire_date:{$notNull: true}
+            }
+        })
     })
 
 
@@ -92,16 +102,16 @@ export default function Home() {
                   {bestSellerProductsData && <div className={"col-span-4 xl:col-span-3"}><BestSellersSlider sliderData={bestSellerProductsData.data}/></div>}
               </div>
           </Section>
-          {/*<Section>*/}
-          {/*    <div className="flex justify-between items-center mb-[50px]">*/}
-          {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals*/}
-          {/*            Of The Days</h2>*/}
-          {/*        <Link className="flex items-center" href="#">All Deals*/}
-          {/*          <IconBox icon={"icon-angle-small-right"} size={24}/>*/}
-          {/*        </Link>*/}
-          {/*    </div>*/}
-          {/*    <DealsOfTheDaySlider sliderData={dealsOfTheDay}/>*/}
-          {/*</Section>*/}
+          <Section>
+              <div className="flex justify-between items-center mb-[50px]">
+                  <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals
+                      Of The Days</h2>
+                  <Link className="flex items-center" href="#">All Deals
+                    <IconBox icon={"icon-angle-small-right"} size={24}/>
+                  </Link>
+              </div>
+              {dealsOfDayData && <DealsOfTheDaySlider sliderData={dealsOfDayData.data}/>}
+          </Section>
           <Section>
               <GeneralProductSlider/>
           </Section>
