@@ -1,19 +1,17 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import {ProductVerticalList} from "@/components";
-import {topSelling} from "@/mock/TopSelling";
-import {topRated} from "@/mock/TopRated";
-import {recentlyAdded} from "@/mock/RecentlyAdded";
-import {trendingProducts} from "@/mock/TrendingProducts";
 import {useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 import {getAllProducts} from "@/api/Product";
+import { InView } from "react-intersection-observer";
+
 
 
 export function GeneralProductSlider() {
 
-    const {data: topRateData} = useQuery<ApiResponseType<ProductType>>({
+    const {data: topRateData, refetch} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProducts.name, "top-rate"],
         queryFn: ()=>getAllProducts(
             {
@@ -24,9 +22,11 @@ export function GeneralProductSlider() {
                     limit: 3,
                     withCount: false
                 }
-            })
+            }),
+        enabled: false,
     })
-    console.log("topDataRate" , topRateData);
+
+
 
     return (
         <Swiper
@@ -57,7 +57,9 @@ export function GeneralProductSlider() {
             </SwiperSlide>
 
             <SwiperSlide>
-                {topRateData && <ProductVerticalList title={"Top Rated"} data={topRateData.data}/>}
+                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                    {topRateData && <ProductVerticalList title={"Top Rated"} data={topRateData.data}/>}
+                </InView>
             </SwiperSlide>
 
             <SwiperSlide>

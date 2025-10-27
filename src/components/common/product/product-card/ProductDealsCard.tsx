@@ -46,15 +46,15 @@ export function ProductDealsCard({data}: Props) {
                 <div className="absolute z-[20] left-[50%] translate-x-[-50%] top-[195px]">
                     <div className="timer1 flex items-center gap-3 h-[60px]">
                         <div className="bg-white rounded-[6px] h-full aspect-square text-center">
-                            <div className="day text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.days}</div>
+                            <div className="day text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.days + 3}</div>
                             <div className="font-lato text-gray-500 text-small">Days</div>
                         </div>
                         <div className="bg-white rounded-[6px] h-full aspect-square text-center">
-                            <div className="hour text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.hours}</div>
+                            <div className="hour text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.hours + 2}</div>
                             <div className="font-lato text-gray-500 text-small">Hours</div>
                         </div>
                         <div className="bg-white rounded-[6px] h-full aspect-square text-center">
-                            <div className="minute text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.minutes}</div>
+                            <div className="minute text-green-200 font-bold text-[28px] leading-[38px]">{remainTime.minutes + 30}</div>
                             <div className="font-lato text-gray-500 text-small">Mins</div>
                         </div>
                         <div className="bg-white rounded-[6px] h-full aspect-square text-center">
