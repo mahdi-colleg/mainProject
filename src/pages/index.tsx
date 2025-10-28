@@ -8,17 +8,23 @@ import {
     SimpleProductSlider
 } from "@/components";
 import {getAllProducts} from "@/api/Product";
-import {useQuery} from "@tanstack/react-query";
+import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 import Link from "next/link";
+import {getMenu} from "@/api/Menu";
 
 
-export default function Home() {
+interface HomeProps {
+    products: ApiResponseType<ProductType>
+}
+
+export default function Home(props: HomeProps) {
 
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProducts.name, "popular-product"],
-        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:{$eq: true}}})
+        queryFn: ()=>getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:{$eq: true}}}),
+        initialData: props.products
     })
 
     const {data: popularFruitProductsData} = useQuery<ApiResponseType<ProductType>>({
@@ -117,4 +123,17 @@ export default function Home() {
           </Section>
       </>
   );
+}
+
+
+export async function getServerSideProps() {
+    const queryClient = new QueryClient()
+
+    await queryClient.prefetchQuery({
+        queryKey : ["getMenu"],
+        queryFn: getMenu,
+    })
+
+    const posts = await getAllProducts({populate:["categories", "thumbnail"], filters:{is_popular:{$eq: true}}});
+    return { props:{products: posts, dehydratedState: dehydrate(queryClient)} };
 }
