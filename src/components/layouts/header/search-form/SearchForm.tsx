@@ -2,7 +2,7 @@ import {IconBox} from "@/components";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {getAllProducts} from "@/api/Product";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 
@@ -24,9 +24,18 @@ export function SearchForm({inputClassName = ""}: Props) {
     // TODO should implement form
 
     const [resultData, setResultData] = useState<Array<EntityType<ProductType>>>([]);
-    const {register, handleSubmit} = useForm<FormInput>();
+    const {register, handleSubmit, watch} = useForm<FormInput>();
 
     const mutation = useMutation({mutationFn: (data:FilterData)=>getAllProducts({filters: data})})
+    const search_text = watch("search_text");
+
+    useEffect(() => {
+        if (search_text && search_text.length > 1){
+            handleSubmit(onSubmit)();
+        }else {
+            setResultData([]);
+        }
+    }, [search_text]);
 
     const onSubmit = (data : FormInput)=>{
 
@@ -44,7 +53,7 @@ export function SearchForm({inputClassName = ""}: Props) {
     return (
             <div className={"relative"}>
                 <form name="search-form" onSubmit={handleSubmit(onSubmit)} action="#" method="post" className="flex items-center">
-                    <input type="text" {...register("search_text")} placeholder="Search for items"
+                    <input autoComplete={"off"} type="text" {...register("search_text")} placeholder="Search for items"
                            className={`${inputClassName} text-xsmall text-gray-400 border-gray-300 w-full  focus:outline-none`}/>
                     <button type="submit"><IconBox icon={"icon-search"} size={22}/></button>
                 </form>
