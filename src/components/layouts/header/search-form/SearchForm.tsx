@@ -5,6 +5,8 @@ import {getAllProducts} from "@/api/Product";
 import {useEffect, useState} from "react";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
+import {func} from "ts-interface-checker";
+import useDebounce from "@/hooks/useDebounce";
 
 interface Props{
     inputClassName?: string,
@@ -29,16 +31,19 @@ export function SearchForm({inputClassName = ""}: Props) {
     const mutation = useMutation({mutationFn: (data:FilterData)=>getAllProducts({filters: data})})
     const search_text = watch("search_text");
 
+
     useEffect(() => {
-        if (search_text && search_text.length > 1){
-            handleSubmit(onSubmit)();
+        if (search_text){
+            delay();
         }else {
             setResultData([]);
         }
     }, [search_text]);
 
     const onSubmit = (data : FormInput)=>{
-
+        if(data.search_text.length <= 1){
+            return;
+        }
         mutation.mutate({
             title: {
                 '$containsi': data.search_text
@@ -49,6 +54,12 @@ export function SearchForm({inputClassName = ""}: Props) {
             }
         })
     }
+
+    const delay= useDebounce(handleSubmit(onSubmit), 1000)
+
+
+
+
 
     return (
             <div className={"relative"}>
