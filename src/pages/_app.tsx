@@ -43,6 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
           `}</style>
           <QueryClientProvider client={queryClient}>
               <HydrationBoundary state={pageProps.dehydratedState}>
+                  <div id={"portal"}></div>
                   <Layout>
                       <Component {...pageProps} />
                       <ToastContainer

@@ -5,7 +5,6 @@ import {getAllProducts} from "@/api/Product";
 import {useEffect, useState} from "react";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
-import {func} from "ts-interface-checker";
 import useDebounce from "@/hooks/useDebounce";
 
 interface Props{

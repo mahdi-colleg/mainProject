@@ -5,6 +5,7 @@ import {IconBox} from "@/components";
 import {Menu} from "@/components/layouts/header/menu";
 import React, { useState} from "react";
 import {useOverlay} from "@/hooks/useOverlay";
+import {LoginModal} from "@/components/common/auth/LoginModal";
 
 export function Header() {
 
