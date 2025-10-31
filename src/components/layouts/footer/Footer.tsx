@@ -2,20 +2,14 @@ import {IconBox, ImageView, Logo} from "@/components";
 import Link from "next/link";
 import {LoginModal} from "@/components/common/auth/LoginModal";
 import React, {useState} from "react";
+import {RegisterModal} from "@/components/common/auth/RegisterModal";
 
 export function Footer() {
-
-    const [showModal, setShowModal] = useState(false)
-
-    const onCloseHandler = () => {
-        setShowModal(false);
-    }
-
     return (
         <footer className="container mb-[68px] relative">
-            {showModal && <LoginModal onClose={onCloseHandler} />}
 
-            <div onClick={()=>setShowModal(true)} className="mb-[68px]">
+
+            <div className="mb-[68px]">
                 <div
                     className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center mt-[38px] relative">
                     <div

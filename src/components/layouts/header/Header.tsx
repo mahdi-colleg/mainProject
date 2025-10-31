@@ -6,10 +6,14 @@ import {Menu} from "@/components/layouts/header/menu";
 import React, { useState} from "react";
 import {useOverlay} from "@/hooks/useOverlay";
 import {LoginModal} from "@/components/common/auth/LoginModal";
+import {RegisterModal} from "@/components/common/auth/RegisterModal";
+import {useModal} from "@/store/ModalContext";
 
 export function Header() {
 
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+
+    const {currentModal, openModal, closeModal} = useModal();
 
     useOverlay({
         onClick: () => setShowMobileMenu(false),
@@ -26,18 +30,18 @@ export function Header() {
     }
 
 
-
-
-
     return (
         <header className="mb-[33px]">
+            {currentModal === "login" && <LoginModal/>}
+            {currentModal === "register" && <RegisterModal onClose={closeModal} />}
+
             <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                 <Logo/>
                 <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
                     <SearchForm inputClassName={"py-[15px]"}/>
                 </div>
                 <ul className="hidden lg:flex gap-5 items-start">
-                    <li className="flex gap-2 cursor-pointer">
+                    <li className="flex gap-2 cursor-pointer" onClick={() => openModal("login")}>
                         <IconBox icon={"icon-user"} size={24} title={"Account"} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato "}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">

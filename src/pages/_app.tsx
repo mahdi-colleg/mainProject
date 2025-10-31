@@ -11,6 +11,7 @@ import {Lato, Quicksand} from "next/font/google";
 import {HydrationBoundary, QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ToastContainer} from "react-toastify";
 import {useState} from "react";
+import {ModalContextProvider} from "@/store/ModalContext";
 
 const quicksand = Quicksand({
     subsets: ["latin"]
@@ -43,22 +44,24 @@ export default function App({ Component, pageProps }: AppProps) {
           `}</style>
           <QueryClientProvider client={queryClient}>
               <HydrationBoundary state={pageProps.dehydratedState}>
-                  <div id={"portal"}></div>
-                  <Layout>
-                      <Component {...pageProps} />
-                      <ToastContainer
-                          position="top-right"
-                          autoClose={false}
-                          hideProgressBar={false}
-                          newestOnTop={false}
-                          closeOnClick
-                          rtl={false}
-                          pauseOnFocusLoss
-                          draggable
-                          pauseOnHover
-                          theme="colored"
-                      />
-                  </Layout>
+                  <ModalContextProvider>
+                      <div id={"portal"}></div>
+                      <Layout>
+                          <Component {...pageProps} />
+                          <ToastContainer
+                              position="top-right"
+                              autoClose={false}
+                              hideProgressBar={false}
+                              newestOnTop={false}
+                              closeOnClick
+                              rtl={false}
+                              pauseOnFocusLoss
+                              draggable
+                              pauseOnHover
+                              theme="colored"
+                          />
+                      </Layout>
+                  </ModalContextProvider>
               </HydrationBoundary>
           </QueryClientProvider>
       </>

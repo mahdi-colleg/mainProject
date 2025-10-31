@@ -17,8 +17,8 @@ export function Portal({children, onClose}: Props) {
 
 
     return createPortal(
-        <div className={"fixed top-0 right-0 bottom-0 left-0 bg-[#efefef] bg-opacity-80 z-10"} onClick={onClose}>
-            <div className={"relative"} onClick={(e)=>e.stopPropagation()}>
+        <div className={"fixed top-0 right-0 bottom-0 left-0 bg-[#efefef] bg-opacity-80 z-10 flex justify-center items-center"} onClick={onClose}>
+            <div onClick={(e)=>e.stopPropagation()}>
                 {children}
             </div>
         </div>,

@@ -1,16 +1,18 @@
 import {Modal} from "@/components";
 import React from "react";
+import {useModal} from "@/store/ModalContext";
 
-interface Props {
-    onClose: () => void;
-}
 
-export function LoginModal({onClose}: Props) {
+export function LoginModal({} ) {
+
+    const {openModal, closeModal} = useModal();
+
     return (
-        <Modal closeModal={onClose} title={"login"}>
+        <Modal closeModal={closeModal} title={"login"}>
             <form>
 
             </form>
+            <span onClick={()=>openModal("register")}> go to register </span>
         </Modal>
     );
 }
