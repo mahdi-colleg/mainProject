@@ -9,9 +9,10 @@ import {LoginModal} from "@/components/common/auth/LoginModal";
 import {RegisterModal} from "@/components/common/auth/RegisterModal";
 import {useModal} from "@/store/ModalContext";
 import {useUser} from "@/store/AuthContext";
+import {toast} from "react-toastify";
 
 export function Header() {
-    const {isLogin} = useUser();
+    const {isLogin, Logout} = useUser();
 
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
@@ -31,6 +32,15 @@ export function Header() {
         e.stopPropagation();
     }
 
+    const accountHandler = ()=>{
+        if(isLogin){
+            Logout();
+            toast.success("You have Logged Out Successfully!");
+        }else{
+            openModal("login")
+        }
+    }
+
 
     return (
         <header className="mb-[33px]">
@@ -43,7 +53,7 @@ export function Header() {
                     <SearchForm inputClassName={"py-[15px]"}/>
                 </div>
                 <ul className="hidden lg:flex gap-5 items-start">
-                    <li className="flex gap-2 cursor-pointer" onClick={() => openModal("login")}>
+                    <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
                         <IconBox icon={"icon-user"} size={24} title={`${isLogin ? "logout" : "login/register"}`} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato "}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">

@@ -44,7 +44,7 @@ export function LoginModal({} ) {
                 <button className={"mt-2 p-4 rounded bg-green-500 text-white"}>submit</button>
 
             </form>
-            <span onClick={()=>openModal("register")}> go to register </span>
+            <span onClick={()=>openModal("register")} className={"hover:cursor-pointer hover:bg-green-500 hover:text-white border-2 bg-white rounded p-3"}> go to register </span>
         </Modal>
     );
 }
