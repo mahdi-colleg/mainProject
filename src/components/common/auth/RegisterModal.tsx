@@ -25,7 +25,7 @@ export function RegisterModal({onClose}: Props) {
         <Modal closeModal={onClose} title={"register"}>
             <form className={"flex flex-col justify-center items-center"} onSubmit={handleSubmit(onSubmit)}>
 
-                <Input register={register("username", {required: "enter your username"})} errors={errors} label={"username"} placeholder={"enter you username"}/>
+                <Input register={register("username", {required: "enter your username"})} errors={errors} label={"username"} {...{placeholder:"enter you username"}}/>
 
                 <Input register={register("email", {required:"enter your email please"})} errors={errors}  type={"email"} label={"email"}/>
 
