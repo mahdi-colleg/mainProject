@@ -1,8 +1,6 @@
 import {IconBox, ImageView, Logo} from "@/components";
 import Link from "next/link";
-import {LoginModal} from "@/components/common/auth/LoginModal";
-import React, {useState} from "react";
-import {RegisterModal} from "@/components/common/auth/RegisterModal";
+import React from "react";
 
 export function Footer() {
     return (

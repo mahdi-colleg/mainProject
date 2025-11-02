@@ -10,7 +10,7 @@ interface Props{
 export function Modal({ title, children, closeModal }: Props) {
     return (
         <Portal onClose={closeModal}>
-            <div className=" bg-zinc-200 z-10 min-w-[100vw] md:min-w-[50vw] min-h-[100vh] md:min-h-[50vw] overflow-auto">
+            <div className=" bg-zinc-200 z-10 min-w-[100vw] md:min-w-[50vw] min-h-[50vh] overflow-auto">
                 <div className="flex justify-between rounded bg-white p-8 text-[22px]">
                     <div onClick={closeModal} className="cursor-pointer">
                         <svg
