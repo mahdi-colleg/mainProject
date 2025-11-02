@@ -4,6 +4,8 @@ import {Input} from "@/components/common/ui/form/Input";
 import {useMutation} from "@tanstack/react-query";
 import {registerApiCall} from "@/api/Auth";
 import {useUser} from "@/store/AuthContext";
+import {toast} from "react-toastify";
+import {useModal} from "@/store/ModalContext";
 
 interface Props {
     onClose: () => void;
@@ -17,6 +19,9 @@ interface FormData{
 
 export function RegisterModal({onClose}: Props) {
 
+    const {closeModal} = useModal();
+
+
     const {Login} = useUser();
 
     const {register, handleSubmit, formState : {errors}} = useForm<FormData>()
@@ -27,6 +32,8 @@ export function RegisterModal({onClose}: Props) {
         mutate.mutate(data, {
             onSuccess: (response) => {
                 Login(response.jwt, response.user);
+                toast.success("You have Logged In successfully");
+                closeModal();
             }
         })
     }

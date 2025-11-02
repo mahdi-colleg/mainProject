@@ -1,4 +1,4 @@
-export interface RegisterResponseType {
+export interface AuthResponseType {
     jwt: string
     user: UserType
 }

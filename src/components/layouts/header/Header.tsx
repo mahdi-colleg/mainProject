@@ -8,8 +8,10 @@ import {useOverlay} from "@/hooks/useOverlay";
 import {LoginModal} from "@/components/common/auth/LoginModal";
 import {RegisterModal} from "@/components/common/auth/RegisterModal";
 import {useModal} from "@/store/ModalContext";
+import {useUser} from "@/store/AuthContext";
 
 export function Header() {
+    const {isLogin} = useUser();
 
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
@@ -42,7 +44,7 @@ export function Header() {
                 </div>
                 <ul className="hidden lg:flex gap-5 items-start">
                     <li className="flex gap-2 cursor-pointer" onClick={() => openModal("login")}>
-                        <IconBox icon={"icon-user"} size={24} title={"Account"} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato "}/>
+                        <IconBox icon={"icon-user"} size={24} title={`${isLogin ? "logout" : "login/register"}`} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato "}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
                         <IconBox icon={"icon-shopping-cart"} size={24} title={"Card"} badge={5} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato"}/>
