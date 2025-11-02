@@ -29,6 +29,7 @@ apiClient.interceptors.response.use(function (response) {
     }else {
         toast.error("خطای نامعلوم");
     }
+    return Promise.reject(error);
 })
 
 export default apiClient;
