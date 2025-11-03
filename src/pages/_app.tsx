@@ -13,6 +13,7 @@ import {ToastContainer} from "react-toastify";
 import {useState} from "react";
 import {ModalContextProvider} from "@/store/ModalContext";
 import {AuthContextProvider} from "@/store/AuthContext";
+import {BasketContextProvider} from "@/store/BasketContext";
 
 const quicksand = Quicksand({
     subsets: ["latin"]
@@ -44,28 +45,30 @@ export default function App({ Component, pageProps }: AppProps) {
             }
           `}</style>
           <QueryClientProvider client={queryClient}>
-              <HydrationBoundary state={pageProps.dehydratedState}>
-                  <AuthContextProvider>
-                      <ModalContextProvider>
-                          <div id={"portal"}></div>
-                          <Layout>
-                              <Component {...pageProps} />
-                              <ToastContainer
-                                  position="top-right"
-                                  autoClose={false}
-                                  hideProgressBar={false}
-                                  newestOnTop={false}
-                                  closeOnClick
-                                  rtl={false}
-                                  pauseOnFocusLoss
-                                  draggable
-                                  pauseOnHover
-                                  theme="colored"
-                              />
-                          </Layout>
-                      </ModalContextProvider>
-                  </AuthContextProvider>
-              </HydrationBoundary>
+              <BasketContextProvider>
+                  <HydrationBoundary state={pageProps.dehydratedState}>
+                      <AuthContextProvider>
+                          <ModalContextProvider>
+                              <div id={"portal"}></div>
+                              <Layout>
+                                  <Component {...pageProps} />
+                                  <ToastContainer
+                                      position="top-right"
+                                      autoClose={false}
+                                      hideProgressBar={false}
+                                      newestOnTop={false}
+                                      closeOnClick
+                                      rtl={false}
+                                      pauseOnFocusLoss
+                                      draggable
+                                      pauseOnHover
+                                      theme="colored"
+                                  />
+                              </Layout>
+                          </ModalContextProvider>
+                      </AuthContextProvider>
+                  </HydrationBoundary>
+              </BasketContextProvider>
           </QueryClientProvider>
       </>
   );
