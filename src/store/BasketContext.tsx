@@ -20,12 +20,15 @@ export const BasketContext = createContext<{
     increaseItem: (productId: number)=>void,
     decreaseItem: (productId: number)=>void,
     deleteItem: (productId: number)=>void,
+    getItem: (productId: number) => undefined | ProductItem,
+
 }>({
     basketItems : [],
     addItem: (product: EntityType<ProductType>)=>{},
     increaseItem: (productId: number)=>{},
     decreaseItem: (productId: number)=>{},
     deleteItem: (productId: number)=>{},
+    getItem: (productId: number)=> undefined,
 });
 
 
@@ -76,12 +79,16 @@ export const BasketContextProvider = ({children}:Props) => {
     };
 
     const deleteItemHandler = (productId: number)=>{
-        const newBasket = basketItems.filter(it => it.productId != productId);
+        const newBasket = basketItems.filter(it => it.productId !== productId);
         setBasketItems(newBasket);
     };
 
+    const getItemHandler = (productId: number): ProductItem | undefined =>{
+        return basketItems.find((it) => it.productId === productId);
+    }
+
 
     return(
-        <BasketContext.Provider value={{basketItems: basketItems, addItem: addItemHandler, increaseItem: increaseItemHandler, decreaseItem: decreaseItemHandler, deleteItem: deleteItemHandler}}>{children}</BasketContext.Provider>
+        <BasketContext.Provider value={{basketItems: basketItems,getItem: getItemHandler, addItem: addItemHandler, increaseItem: increaseItemHandler, decreaseItem: decreaseItemHandler, deleteItem: deleteItemHandler}}>{children}</BasketContext.Provider>
     )
 }

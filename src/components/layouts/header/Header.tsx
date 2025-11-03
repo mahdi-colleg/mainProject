@@ -3,16 +3,19 @@ import {SearchForm} from "@/components/layouts/header/search-form";
 import Link from "next/link";
 import {IconBox} from "@/components";
 import {Menu} from "@/components/layouts/header/menu";
-import React, { useState} from "react";
+import React, {useContext, useState} from "react";
 import {useOverlay} from "@/hooks/useOverlay";
 import {LoginModal} from "@/components/common/auth/LoginModal";
 import {RegisterModal} from "@/components/common/auth/RegisterModal";
 import {useModal} from "@/store/ModalContext";
 import {useUser} from "@/store/AuthContext";
 import {toast} from "react-toastify";
+import {BasketContext} from "@/store/BasketContext";
 
 export function Header() {
     const {isLogin, Logout} = useUser();
+
+    const basket = useContext(BasketContext);
 
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
@@ -57,7 +60,7 @@ export function Header() {
                         <IconBox icon={"icon-user"} size={24} title={`${isLogin ? "logout" : "login/register"}`} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato "}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
-                        <IconBox icon={"icon-shopping-cart"} size={24} title={"Card"} badge={5} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato"}/>
+                        <IconBox icon={"icon-shopping-cart"} size={24} title={"Card"} badge={basket.basketItems.length} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato"}/>
                     </li>
                 </ul>
                 <button onClick={mobileMenuHandler} className="flex flex-col justify-between py-[4px] lg:hidden w-[24px] h-[24px]">
@@ -93,7 +96,7 @@ export function Header() {
                             <IconBox icon={"icon-user"} size={24} title={"Account"} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato "}/>
                         </li>
                         <li className="flex gap-2 cursor-pointer">
-                            <IconBox icon={"icon-shopping-cart"} size={24} title={"Card"} badge={5} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato"}/>
+                            <IconBox icon={"icon-shopping-cart"} size={24} title={"Card"} badge={basket.basketItems.length} link={"#"} hideTitleOnMobile={true} titleClassName={"text-medium text-gray-500 font-lato"}/>
                         </li>
                     </ul>
                 </div>

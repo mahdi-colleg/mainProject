@@ -10,9 +10,10 @@ interface Props {
     titleClassName?: string,
     path?: number,
     linkClassName?: string,
+    onClick?: () => void,
 }
 
-export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false, badge = 0, linkClassName = "", titleClassName = "", path = 0}: Props) {
+export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false, badge = 0, linkClassName = "", titleClassName = "", path = 0, onClick}: Props) {
 
     let span = [];
     for (let i = 1; i <= path; i++) {
@@ -47,17 +48,17 @@ export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false
         return (
             <>
                 {badge ?
-                    <div className="relative">
+                    <div onClick={onClick} className="relative">
                     <span
                         className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
                         <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
                     </div> :
-                    <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
+                    <i onClick={onClick} style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
                 }
 
                 {
                     title &&
-                    <div
+                    <div onClick={onClick}
                         className={`${
                             hideTitleOnMobile ? "hidden xl:inline-block" : "inline-block"
                         } ${titleClassName} ml-2`}
