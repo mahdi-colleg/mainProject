@@ -1,4 +1,4 @@
-import {IconBox, ImageView, ProductCardBottom, Rating} from "@/components";
+import {ImageView, ProductCardBottom, Rating} from "@/components";
 import {useEffect, useState} from "react";
 import {timerHelper} from "@/utils/timer";
 import {EntityType} from "@/types";
