@@ -1,3 +1,8 @@
+export interface ApiResponseSingleType<T> {
+    data: EntityType<T>
+    meta: MetaType
+}
+
 export interface ApiResponseType<T> {
     data: EntityType<T>[]
     meta: MetaType
