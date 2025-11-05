@@ -1,7 +1,5 @@
 import axios from "axios";
 import {toast} from "react-toastify";
-import {useEffect} from "react";
-
 
 const apiClient = axios.create({
     baseURL: "https://nest.navaxcollege.com/api",
