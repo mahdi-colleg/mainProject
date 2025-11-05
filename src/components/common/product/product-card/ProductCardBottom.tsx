@@ -11,7 +11,9 @@ interface Props {
 
 export function ProductCardBottom({productData}: Props) {
 
-    const {addItem} = useBasket()
+    const {addItem, updateItem, getItem} = useBasket()
+
+    const basketItem = getItem(productData.id)
 
     // const basket = useContext(BasketContext);
 
@@ -21,16 +23,16 @@ export function ProductCardBottom({productData}: Props) {
         <div className="add-product">
 
             {
-                // currentProductInBasket ?
-                //     <div className="input-product__container border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px] w-[80px] flex justify-between">
-                //         <div className="flex flex-col justify-between">
-                //             <IconBox icon="icon-angle-small-up up" onClick={()=>basket.increaseItem(productData.id)} size={10}/>
-                //             <IconBox icon="icon-angle-small-down down" onClick={()=>basket.decreaseItem(productData.id)} size={10}/>
-                //         </div>
-                //         {
-                //             currentProductInBasket.quantity
-                //         }
-                //     </div> :
+                basketItem ?
+                    <div className="input-product__container border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px] w-[80px] flex justify-between">
+                        <div className="flex flex-col justify-between">
+                            <IconBox icon="icon-angle-small-up up" onClick={()=>updateItem(productData.id, "increase")} size={10}/>
+                            <IconBox icon="icon-angle-small-down down" onClick={()=>updateItem(productData.id, "decrease")} size={10}/>
+                        </div>
+                        {
+                            basketItem.quantity
+                        }
+                    </div> :
                     <button onClick={()=>addItem(productData.id)} className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
                         Adds +
                     </button>

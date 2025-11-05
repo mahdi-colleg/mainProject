@@ -6,7 +6,7 @@ export interface BasketType {
     basket_items: Array<BasketItemType>
 }
 
-interface BasketItemType{
+export interface BasketItemType{
     id: number,
     quantity: number,
     product: {
