@@ -74,6 +74,7 @@ export function useBasket(){
         mutate.mutate(updateData, {onSuccess: (response) => {
                 queryClient.invalidateQueries({queryKey: ["get-basket"]})
             }, onError: (response) => {
+                // @ts-ignore
                 toast.error(response.response.data.error.message)
             }})
     }
