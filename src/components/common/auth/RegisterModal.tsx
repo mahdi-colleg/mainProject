@@ -6,6 +6,7 @@ import {registerApiCall} from "@/api/Auth";
 import {useUser} from "@/store/AuthContext";
 import {toast} from "react-toastify";
 import {useModal} from "@/store/ModalContext";
+import {useBasket} from "@/hooks/useBasket";
 
 interface Props {
     onClose: () => void;
@@ -21,6 +22,8 @@ export function RegisterModal({onClose}: Props) {
 
     const {closeModal} = useModal();
 
+    const {uuid2user} = useBasket()
+
 
     const {Login} = useUser();
 
@@ -34,6 +37,7 @@ export function RegisterModal({onClose}: Props) {
                 Login(response.jwt, response.user);
                 toast.success("You have Logged In successfully");
                 closeModal();
+                uuid2user();
             }
         })
     }

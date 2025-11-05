@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {basketApiCall, updateBasketApiCall} from "@/api/Basket";
+import {basketApiCall, updateBasketApiCall, UUID2UserApiCall} from "@/api/Basket";
 import {UpdateBasketData} from "@/types/api/UpdateBasketData";
 import {BasketItemType} from "@/types/api/Basket";
 import {toast} from "react-toastify";
@@ -10,6 +10,11 @@ export function useBasket(){
     const {data: basketData} = useQuery({queryKey: ["get-basket"], queryFn: basketApiCall})
 
     const mutate = useMutation({mutationFn: updateBasketApiCall});
+    const mutateUUID2User = useMutation({mutationFn: UUID2UserApiCall, onSuccess: (response) => {
+            console.log("response", response)
+            window.localStorage.removeItem("uuid");
+            queryClient.invalidateQueries({queryKey: ["get-basket"]})
+        }});
 
     const basketItems = basketData?.data.attributes.basket_items ?? [];
 
@@ -83,7 +88,21 @@ export function useBasket(){
         return basketItems.find(item => item.product.data.id === productId)
     }
 
+    const uuid2userHandler = ()=>{
+        const token = window.localStorage.getItem("token");
+        const uuid = window.localStorage.getItem("uuid");
+        if (token && uuid) {
 
-    return {basketItems: basketItems, addItem: addItemHandler, updateItem: updateItemHandler, getItem: getItemHandler};
+            if(basketItems.length > 0){
+                mutateUUID2User.mutate(uuid)
+            }else {
+                window.localStorage.removeItem("uuid");
+                queryClient.invalidateQueries({queryKey: ["get-basket"]})
+            }
+        }
+    }
+
+
+    return {basketItems: basketItems, addItem: addItemHandler, updateItem: updateItemHandler, getItem: getItemHandler, uuid2user: uuid2userHandler};
 
 }

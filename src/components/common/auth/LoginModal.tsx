@@ -6,6 +6,7 @@ import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {loginApiCall} from "@/api/Auth";
 import {toast} from "react-toastify";
+import {useBasket} from "@/hooks/useBasket";
 
 interface FormData{
     identifier: string;
@@ -15,6 +16,8 @@ interface FormData{
 export function LoginModal({} ) {
 
     const {openModal, closeModal} = useModal();
+
+    const {uuid2user} = useBasket()
 
     const {Login} = useUser();
 
@@ -29,6 +32,7 @@ export function LoginModal({} ) {
                 Login(response.jwt, response.user);
                 toast.success("You have Logged In successfully");
                 closeModal();
+                uuid2user();
             }
         })
     }
